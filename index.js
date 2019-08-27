@@ -15,15 +15,21 @@ const carSchema = new mongoose.Schema({
 
 const Car = mongoose.model('car', carSchema)
 
-createCar()
+getCars()
+async function getCars(){
+    const cars = await Car.find()
+    console.log(cars)
+}
 
+
+//createCar()
 async function createCar(){
     const car = new Car({
-        company: 'BMW',
-        model: 'X3',
-        price: 2000,
-        year: 2019,
-        sold: false,
+        company: 'Audi',
+        model: 'A3',
+        price: 6000,
+        year: 2020,
+        sold: true,
         extras: ['Automatic', '4*4']
     })
 
