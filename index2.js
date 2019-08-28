@@ -7,8 +7,8 @@ const carSchema = new mongoose.Schema({
     company:{
         type: String,
         required: true,
-        lowercase: true,
-        //uppercase: true,
+        //lowercase: true,
+        uppercase: true,
         trim: true,
         minlength: 2,
         maxlength: 99,
@@ -31,3 +31,26 @@ const carSchema = new mongoose.Schema({
     extras: [String],
     date: {type: Date, default: Date.now},
 })
+
+const Car = mongoose.model('car', carSchema)
+
+createCar()
+
+async function createCar(){
+    const car = new Car({
+        //company: 'AUDI',
+        model: 'X7',
+        price: 6000,
+        year: 2029,
+        sold: true,
+        extras:['4*4']
+    })
+
+    try{
+        const result = await car.save()
+        console.log(result)
+    }catch(e){
+        console.group(e.message)
+    }
+    
+}
