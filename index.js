@@ -15,7 +15,17 @@ const carSchema = new mongoose.Schema({
 
 const Car = mongoose.model('car', carSchema)
 
-getFilterPriceInNinCars()
+getFilterPriceAndOrCars()
+
+async function getFilterPriceAndOrCars(){
+    const cars = await Car
+        .find()
+        //.and([{company: 'Audi'},{model:'X3'}])
+        .or([{company: 'Audi'},{model:'X3'}])
+    console.log(cars)
+}
+
+//getFilterPriceInNinCars()
 
 async function getFilterPriceInNinCars(){
     const cars = await Car
