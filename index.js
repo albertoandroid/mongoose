@@ -15,7 +15,20 @@ const carSchema = new mongoose.Schema({
 
 const Car = mongoose.model('car', carSchema)
 
-getPaginationCars()
+updateCar('5d65509f91dbabd080b7671a')
+
+async function updateCar(id){
+    const car = await Car.findById(id)
+    if(!car) return
+
+    car.company = 'Mercedes'
+    car.model = 'Clase A'
+
+    const result = await car.save()
+    console.log(result)
+}
+
+//getPaginationCars()
 
 async function getPaginationCars(){
     const pageNumber = 1
