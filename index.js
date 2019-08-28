@@ -15,7 +15,23 @@ const carSchema = new mongoose.Schema({
 
 const Car = mongoose.model('car', carSchema)
 
-updateCar('5d65509f91dbabd080b7671a')
+updateFirstCar('5d668384f0f182db6052fc05')
+
+async function updateFirstCar(id){
+    const result = await Car.update(
+        {_id: id},
+        {
+            $set:{
+                company: 'Seat',
+                model: 'Ibiza'
+            }
+        }
+    )
+    console.log(result)
+
+}
+
+//updateCar('5d65509f91dbabd080b7671a')
 
 async function updateCar(id){
     const car = await Car.findById(id)
