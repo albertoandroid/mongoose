@@ -18,7 +18,7 @@ const Car = mongoose.model('car', carSchema)
 getPaginationCars()
 
 async function getPaginationCars(){
-    const pageNumber = 2
+    const pageNumber = 1
     const pageSize = 2
 
     const cars = await Car
