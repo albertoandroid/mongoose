@@ -15,7 +15,15 @@ const carSchema = new mongoose.Schema({
 
 const Car = mongoose.model('car', carSchema)
 
-getFilterPriceCars()
+getFilterPriceInNinCars()
+
+async function getFilterPriceInNinCars(){
+    const cars = await Car
+        .find({extras: {$in: 'laser light'}})
+    console.log(cars)
+}
+
+//getFilterPriceCars()
 
 async function getFilterPriceCars(){
     const cars = await Car
@@ -60,7 +68,7 @@ async function createCar(){
         price: 6000,
         year: 2020,
         sold: false,
-        extras: ['Automatic', '4*4']
+        extras: ['laser light']
     })
 
     const result = await car.save()
