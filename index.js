@@ -15,7 +15,20 @@ const carSchema = new mongoose.Schema({
 
 const Car = mongoose.model('car', carSchema)
 
-getCompanyAndSoldFilterCars()
+getMoreFilterCar()
+
+async function getMoreFilterCar(){
+    const cars = await Car
+        .find({company: 'BMW', sold: false})
+        .sort({price: 1})
+        .limit(2)
+        .select({company: 1, model: 1, price: 1})
+
+    console.log(cars)    
+}
+
+
+//getCompanyAndSoldFilterCars()
 
 async function getCompanyAndSoldFilterCars(){
     const cars = await Car.find({company: 'BMW', sold: false})
@@ -32,11 +45,11 @@ async function getCars(){
 //createCar()
 async function createCar(){
     const car = new Car({
-        company: 'Audi',
-        model: 'A3',
+        company: 'BMW',
+        model: 'S1',
         price: 6000,
         year: 2020,
-        sold: true,
+        sold: false,
         extras: ['Automatic', '4*4']
     })
 
