@@ -15,7 +15,21 @@ const carSchema = new mongoose.Schema({
 
 const Car = mongoose.model('car', carSchema)
 
-getCountCar()
+getPaginationCars()
+
+async function getPaginationCars(){
+    const pageNumber = 2
+    const pageSize = 2
+
+    const cars = await Car
+        .find()
+        .skip((pageNumber-1)*pageSize)
+        .limit(pageSize)
+
+        console.log(cars)
+}
+
+//getCountCar()
 
 async function getCountCar(){
     const cars = await Car 
