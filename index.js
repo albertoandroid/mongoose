@@ -15,7 +15,17 @@ const carSchema = new mongoose.Schema({
 
 const Car = mongoose.model('car', carSchema)
 
-getFilterPriceAndOrCars()
+getCountCar()
+
+async function getCountCar(){
+    const cars = await Car 
+        .find({company: 'Audi'})
+        .count()
+
+    console.log(cars)
+}
+
+//getFilterPriceAndOrCars()
 
 async function getFilterPriceAndOrCars(){
     const cars = await Car
