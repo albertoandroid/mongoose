@@ -15,7 +15,14 @@ const carSchema = new mongoose.Schema({
 
 const Car = mongoose.model('car', carSchema)
 
-updateFirstCar('5d668384f0f182db6052fc05')
+deleteCar('5d65517567d6f6d093db5921')
+
+async function deleteCar(id){
+    const result = await Car.deleteOne({_id: id})
+    console.log(result)
+}
+
+//updateFirstCar('5d668384f0f182db6052fc05')
 
 async function updateFirstCar(id){
     const result = await Car.update(
